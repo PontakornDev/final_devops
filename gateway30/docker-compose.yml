@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  register:
+    container_name: register_gateway
+    build: python/
+    image: gateway30_register
+    restart: always
+    ports:
+      - "7001:80"  
+networks:
+  default:
+    external:
+      name: microservice30_network

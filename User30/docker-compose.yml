@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  student_rpc:
+    container_name: student_rpc
+    build: python/
+    image: user30_student_rpc
+    restart: always
+    depends_on:
+      - db
+    networks:
+      - webproxy
+      - default
+
+  db:
+    container_name: mariadb
+    image: mariadb:latest
+    restart: always
+    volumes:
+      - ../mariadb/initdb/:/docker-entrypoint-initdb.d
+      - ../mariadb/data/:/var/lib/mysql/
+    environment:
+      - MYSQL_ROOT_PASSWORD=devops101
+      - MYSQL_DATABASE=devops_db
+      - MYSQL_USER=devops
+      - MYSQL_PASSWORD=devops101
+
+networks:
+  default:
+    external:
+      name: microservice30_network
+  webproxy:
+    external:
+      name: proxy30_network

@@ -1,0 +1,21 @@
+image: tmaier/docker-compose:latest
+services:
+  - docker:dind
+stages:
+   - build
+   - deploy
+
+build:
+   stage: build
+   script:
+    - echo "Gitlab CI BUILD Stage"
+    - pwd
+    - docker info
+    - docker compose -v
+    - docker stack rm vossibility_web
+    - docker-compose build
+deploy:
+  stage: deploy
+  script:
+    - echo "Gitlab CI DEPLOY Stage"
+    - docker stack deploy --with-registry-auth -c docker-compose.yml vossibility_web

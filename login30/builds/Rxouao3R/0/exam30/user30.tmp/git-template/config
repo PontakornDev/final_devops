@@ -1,0 +1,6 @@
+[init]
+	defaultBranch = none
+[fetch]
+	recurseSubmodules = false
+[http "https://gitlab.com"]
+	sslCAInfo = /home/manager30/microservice30/login30/builds/Rxouao3R/0/exam30/user30.tmp/CI_SERVER_TLS_CA_FILE

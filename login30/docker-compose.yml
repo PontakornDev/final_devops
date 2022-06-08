@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  login_rpc:
+    container_name: login_rpc
+    build: .
+    image: login_student_rpc
+    restart: always
+
+    networks:
+      - webproxy
+      - default
+
+networks:
+  default:
+    external:
+      name: microservice30_network
+  webproxy:
+    external:
+      name: proxy30_network
